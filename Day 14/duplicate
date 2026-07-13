@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+    int size;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Array to track if a duplicate has already been printed
+    // 0 means not printed, 1 means printed
+    int visited[size];
+    for (int i = 0; i < size; i++) {
+        visited[i] = 0;
+    }
+
+    int foundDuplicate = 0;
+    printf("Duplicate elements in the array: ");
+
+    // Check for duplicate elements
+    for (int i = 0; i < size; i++) {
+        // If this element has already been processed as a duplicate, skip it
+        if (visited[i] == 1) {
+            continue;
+        }
+
+        int count = 1;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+                visited[j] = 1; // Mark the match as visited so it isn't checked again
+            }
+        }
+
+        // If counted more than once, it's a duplicate
+        if (count > 1) {
+            printf("%d ", arr[i]);
+            foundDuplicate = 1;
+        }
+    }
+
+    if (!foundDuplicate) {
+        printf("None");
+    }
+    printf("\n");
+
+    return 0;
+}
