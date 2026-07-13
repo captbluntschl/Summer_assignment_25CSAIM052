@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main() {
+    int size, positions;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the number of positions to rotate left: ");
+    scanf("%d", &positions);
+
+    positions = positions % size;
+    if (positions < 0) {
+        positions = positions + size;
+    }
+
+    int temp[positions];
+    for (int i = 0; i < positions; i++) {
+        temp[i] = arr[i];
+    }
+
+    for (int i = positions; i < size; i++) {
+        arr[i - positions] = arr[i];
+    }
+
+    for (int i = 0; i < positions; i++) {
+        arr[size - positions + i] = temp[i];
+    }
+
+    printf("The left-rotated array is: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
