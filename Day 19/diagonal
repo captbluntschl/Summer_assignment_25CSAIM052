@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int size;
+
+    printf("Enter the size of the square matrix: ");
+    scanf("%d", &size);
+
+    int matrix[size][size];
+
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    int principalSum = 0;
+    int secondarySum = 0;
+
+    for (int i = 0; i < size; i++) {
+        principalSum += matrix[i][i];
+        secondarySum += matrix[i][size - 1 - i];
+    }
+
+    printf("Sum of Principal Diagonal = %d\n", principalSum);
+    printf("Sum of Secondary Diagonal = %d\n", secondarySum);
+
+    return 0;
+}
